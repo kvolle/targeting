@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kyle/Desktop/targeting/src/../include/target.h
+
+/home/kyle/Desktop/targeting/src/../include/vehicle.h
+vector
+-
+
+/home/kyle/Desktop/targeting/src/main.cpp
+../include/target.h
+/home/kyle/Desktop/targeting/src/../include/target.h
+../include/vehicle.h
+/home/kyle/Desktop/targeting/src/../include/vehicle.h
+iostream
+-
+string
+-
+sstream
+-
+map
+-
+
