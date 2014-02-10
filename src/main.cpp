@@ -2,77 +2,92 @@
 #include "../include/vehicle.h"
 #include <iostream>
 #include <string>
-#include <sstream>
-#include <map>
+#include <cmath>
 
+
+const int numTargets = 8;
+const int numVehicles = 15;
+const int threshold = 50; 
 using namespace std;
 
-vector<int> visible_targets(int n, int threshold, int x, int y){
+vector<int> visible_targets(int x, int y, vector<target> targets){
 	vector<int> visible;
-	stringstream ss;
-	map<string,target> targetMap;
+	vector<int> distance;
+	int dist;
+	int holder;
+	int ctr;
+	for (int i=0;i<numTargets;i++){
 
-	for (int i=0;i<n;i++){
-		ss.str("");
-		ss<<i;
-		string name = 't'+ ss.str();
-		int xdiff = targetMap[name].x-x;
-		int ydiff = targetMap[name].y-y;
-	cout << name << ": " << xdiff << " " << ydiff << endl;
-		if (xdiff*xdiff + ydiff*ydiff <threshold*threshold){
+		int xdiff = targets[i].x-x;
+		int ydiff = targets[i].y-y;
+		dist = xdiff*xdiff + ydiff*ydiff;
+		if (dist <threshold*threshold){
 			visible.push_back(i);
+			distance.push_back(sqrt(dist));
+		}
+	}
+	ctr = distance.size();
+	if (ctr != 0){
+		for (int k=0;k<distance.size()-1;k++){
+			for (int j = 0;j<ctr-1;j++){
+				if (distance[j] > distance[j+1]){
+					holder = distance[j];
+					distance[j] = distance[j+1];
+					distance[j+1] = holder;
+					holder = visible[j];
+					visible[j] = visible[j+1];
+					visible[j+1] = holder;
+				}
+			}
+			ctr = ctr-1;
 		}
 	}
 	return visible;
 }
+vector<int> local_vehicles(int x, int y, vector<vehicle> vehicles, int same){
+	vector<int> local;
+	
+	for (int i=0;i<numVehicles;i++){
+		if (i != same){
+			int xdiff = vehicles[i].x-x;
+			int ydiff = vehicles[i].y-y;
 
+			if (xdiff*xdiff + ydiff*ydiff <threshold*threshold){
+				local.push_back(i);
+			}
+		}
+	}
+	return local;
+}
 
 int main() {
 
-	int numTargets = 4;
-	int numVehicles = 15;
-	int threshold = 200;
+	vector <target> targets;
+	vector <vehicle> vehicles;
 
-	stringstream ss;
-	map<string,target> targetMap;
-	map<string,vehicle> vehicleMap;
 	for (int i=0;i<numTargets;i++){
-		ss.str("");
-		ss << i;
-		string name = 't' + ss.str();
-		targetMap[name];
-		targetMap[name].random_start(i);
-		cout << name <<" " << targetMap[name].x << " " << targetMap[name].y << endl;
+		target temp;
+		temp.random_start(i);
+		targets.push_back(temp);
 	}
 
+//cout << targets[0].x << " " << targets[1].x << " " << targets[2].x << " " << targets[3].x << " " << targets[4].x << " " << targets.size() << endl;
 	for (int j = 0;j<numVehicles;j++){
-		ss.str("");
-		ss << j;
-		string name = 'v' +ss.str();
-		vehicleMap[name];
-		vehicleMap[name].random_start(j);
-		//cout << name << " " << vehicleMap[name].x << " " << vehicleMap[name].y << endl;
+		vehicle temp;
+		temp.random_start(j);
+		vehicles.push_back(temp);
 	}
-	vector <int> dump;
-	string tmp = "v3";
-
-	dump = visible_targets(numTargets,threshold,vehicleMap[tmp].x,vehicleMap[tmp].y);
-	ss.str("");
-	ss << dump[0];
-	string tmp2 = 't' + ss.str();
-	cout << "t: " << targetMap[tmp2].x << " " << targetMap[tmp2].y << endl;
-	ss.str("");
-	ss << dump[1];
-	tmp2 = 't' + ss.str();
-	cout << "t: " << targetMap[tmp2].x << " " << targetMap[tmp2].y << endl;
-	ss.str("");
-	ss << dump[2];
-	tmp2 = 't' + ss.str();
-	cout << "t: " << targetMap[tmp2].x << " " << targetMap[tmp2].y << endl;
-	ss.str("");
-	ss << dump[3];
-	tmp2 = 't' + ss.str();
-	cout << "t: " << targetMap[tmp2].x << " " << targetMap[tmp2].y << endl;
+	for (int v=0;v<numVehicles;v++){
+		vehicles[v].visible_targets = visible_targets(vehicles[v].x, vehicles[v].y, targets);
+		vehicles[v].local_vehicles = local_vehicles(vehicles[v].x, vehicles[v].y, vehicles, v);
+		if (vehicles[v].visible_targets.size()>0 && vehicles[v].visible_targets.size()<numVehicles+1){
+			vehicles[v].aim(vehicles[v].visible_targets[0]);
+		}
+		else{
+			vehicles[v].aim(-1);
+		}
+		cout << vehicles[v].targeted << " ";
+	}
 
 	return 0;
 }	

@@ -5,7 +5,7 @@ class target {
 public:
 int x,y,id,size;
 void random_start(int);
-};
 
+};
 
 #endif
