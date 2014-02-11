@@ -1,6 +1,7 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 #include<vector>
+#include"target.h"
 
 class vehicle{
 public:
@@ -9,10 +10,8 @@ int targeted;
 std::vector<int> visible_targets;
 std::vector<int> local_vehicles;
 
-//vector<int> visible_targets(int, int, vector<target>);
-
 void random_start(int);
-void aim(int);
+std::vector<int> aim(std::vector<int>);
 };
 
 #endif

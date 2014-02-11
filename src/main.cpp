@@ -3,11 +3,12 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <ctime>
+#include <cstdlib>
 
-
-const int numTargets = 8;
-const int numVehicles = 15;
-const int threshold = 50; 
+const int numTargets = 4;
+const int numVehicles = 7;
+const int threshold = 72; 
 using namespace std;
 
 vector<int> visible_targets(int x, int y, vector<target> targets){
@@ -64,6 +65,10 @@ int main() {
 
 	vector <target> targets;
 	vector <vehicle> vehicles;
+	int totals[numTargets];
+	for (int c=0;c<numTargets;c++){
+		totals[c] = 0;
+	}
 
 	for (int i=0;i<numTargets;i++){
 		target temp;
@@ -80,13 +85,46 @@ int main() {
 	for (int v=0;v<numVehicles;v++){
 		vehicles[v].visible_targets = visible_targets(vehicles[v].x, vehicles[v].y, targets);
 		vehicles[v].local_vehicles = local_vehicles(vehicles[v].x, vehicles[v].y, vehicles, v);
-		if (vehicles[v].visible_targets.size()>0 && vehicles[v].visible_targets.size()<numVehicles+1){
-			vehicles[v].aim(vehicles[v].visible_targets[0]);
+		//if (vehicles[v].visible_targets.size()>0 && vehicles[v].visible_targets.size()<numVehicles+1)
+			cout << v << ":  ";
+			for (int fuck=0;fuck<vehicles[v].visible_targets.size();fuck++){
+				cout << vehicles[v].visible_targets[fuck] << " ";
+			}
+			cout << endl;
+			vehicles[v].visible_targets = vehicles[v].aim(vehicles[v].visible_targets);
+			cout << v << ":  ";
+			for (int fuck2=0;fuck2<vehicles[v].visible_targets.size();fuck2++){
+				cout << vehicles[v].visible_targets[fuck2] << " ";
+			}
+			cout << endl;
+			totals[vehicles[v].targeted] +=1;
+	}
+	for (int cc=0;cc<numTargets;cc++){
+		cout << totals[cc]-targets[cc].size << "  ";
+	}
+cout << endl;
+	srand((unsigned)time(NULL));
+for(int 
+
+
+
+redo=0;redo<1;redo++){
+	for (int r=0;r<numVehicles;r++){
+		if (totals[vehicles[r].targeted]-targets[vehicles[r].targeted].size > 0){
+cout << (int)50*(totals[vehicles[r].targeted]-targets[vehicles[r].targeted].size )/targets[vehicles[r].targeted].size << endl;
+				vehicles[r].visible_targets = vehicles[r].aim(vehicles[r].visible_targets);
+			
 		}
-		else{
-			vehicles[v].aim(-1);
+		cout << r << ":  ";
+		for (int fuck2=0;fuck2<vehicles[r].visible_targets.size();fuck2++){
+			cout << vehicles[r].visible_targets[fuck2] << " ";
 		}
-		cout << vehicles[v].targeted << " ";
+		cout << endl;
+	}
+}
+
+	for (int c2=0;c2<numTargets;c2++){
+		cout << totals[c2]-targets[c2].size << "  ";
 	}
 
 	return 0;

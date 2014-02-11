@@ -18,8 +18,16 @@ y = rand() % 101;
 altitude = 0;
 }
 
-void vehicle::aim(int target){
-
-targeted = target;
+std::vector<int> vehicle::aim(std::vector<int> targets){
+	if (targets.size() >0){
+		targeted = targets[0];
+		targets.erase(targets.begin());
+	}
+	else{
+		targeted = -2;
+	}
+	
+	return targets;
+//targeted = target;
 
 }

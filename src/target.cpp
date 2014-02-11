@@ -1,3 +1,4 @@
+
 #include "../include/target.h"
 #include <cstdlib>
 #include <ctime>
@@ -12,5 +13,5 @@ x = rand() % 101;
 srand((unsigned)x);
 y = rand() % 101;
 srand((unsigned)y);
-size = 3*(rand() % 4);
+size = 3*(1+rand() % 2);
 }
