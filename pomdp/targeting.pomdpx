@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+   <pomdpx version="1.0" id="relaxedVersion"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="pomdpx.xsd">
+         <Description>Relaxed version of distributed asset allocation problem
+         </Description>
+         <Discount>0.95</Discount>
+         <Variable>
+              <StateVar vnamePrev="robot_0" vnameCurr="robot_1"
+                fullyObs="true">
+                  <NumValues> 2</NumValues>
+              <StateVar vnamePrev="target0_0" vnameCurr="target0_1"
+                fullyObs="true">
+                  <NumValues>3</NumValues>
+              </StateVar>
+              <StateVar vnamePrev="target1_0" vnameCurr="target1_1"
+                fullyObs="true">
+                  <NumValues>3</NumValues>
+              </StateVar>
+              <ActionVar vname="action_robot">
+                  <ValueEnum> stay switchTo_0 switchTo_1</ValueEnum>
+              </ActionVar>
+              <ObsVar vname ="obs sensor"/>
+              <RewardVar vname ="reward robot" />
+          </Variable>
+      <StateTransitionFunction>
+          <CondProb>
+              <Var>robot_1</Var>
+              <Parent>action_robot robot_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>switchTo_0 * s0 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 S0 </Instance>
+                      <ProbTable>1.0</Probtable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * s1 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 S1 </Instance>
+                      <ProbTable>1.0</Probtable>
+                  </Entry>
+           </Parameter>
+       </CondProb>
+          <CondProb>
+              <Var>target0_1</Var>
+              <Parent>action_robot robot_0 target0_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+              </Parameter>
+          </CondProb>
+          <CondProb>
+              <Var>target1_1</Var>
+              <Parent>action_robot robot_0 target1_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+              </Parameter>
+          </CondProb>
+      </StateTransitionFunction>
+      <RewardFunction>
+        <Func>
+            <Var> reward robot </Var>
+            <Parent>action_robot robot_0 target0_0 target1_0 </Parent>
+            <Parameter type="TBL">
+                  <Entry>
+                  <Instance>switchTo0 * s0 *</Instance>
+                  <ValueTable>1</ValueTable>
+                  <Entry>
+                  <Instance>switchTo0 * s1 *</Instance>
+                  <ValueTable>0</ValueTable>
+                  <Entry>
+                  <Instance>switchTo1 * * s0</Instance>
+                  <ValueTable>2</ValueTable>
+                  <Entry>
+                  <Instance>switchTo1 * * s1</Instance>
+                  <ValueTable>1</ValueTable>
+            </Parameter>
+        </Func>
+      </RewardFunction>
+</pomdpx>

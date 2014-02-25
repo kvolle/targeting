@@ -5,7 +5,7 @@
 
 void target::random_start(int id_given){
 id = id_given;
-srand((unsigned)time(NULL)*id);
+srand((unsigned)time(NULL)*(id+23));
 //std::cout << (unsigned)time(NULL) << std::endl;
 
 x = rand() % 101;

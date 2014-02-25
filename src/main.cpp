@@ -7,11 +7,11 @@
 #include <cstdlib>
 
 const int numTargets = 4;
-const int numVehicles = 7;
+const int numVehicles = 25;
 const int threshold = 72; 
 using namespace std;
 
-vector<int> visible_targets(int x, int y, vector<target> targets){
+vector<int> visible_targets(int x, int y, int targeted, vector<target> targets){
 	vector<int> visible;
 	vector<int> distance;
 	int dist;
@@ -22,7 +22,7 @@ vector<int> visible_targets(int x, int y, vector<target> targets){
 		int xdiff = targets[i].x-x;
 		int ydiff = targets[i].y-y;
 		dist = xdiff*xdiff + ydiff*ydiff;
-		if (dist <threshold*threshold){
+		if ((dist <threshold*threshold)&&(i!=targeted)){
 			visible.push_back(i);
 			distance.push_back(sqrt(dist));
 		}
@@ -60,72 +60,83 @@ vector<int> local_vehicles(int x, int y, vector<vehicle> vehicles, int same){
 	}
 	return local;
 }
+void displayVector(vector<int> vec){
+
+	for (int xx=0;xx<vec.size();xx++){
+		cout << vec[xx] << " ";
+	}
+	cout << endl;
+}
 
 int main() {
 
 	vector <target> targets;
 	vector <vehicle> vehicles;
 	int totals[numTargets];
+	// Totals defines the total number of vehicles assigned to each target
+	// TODO make it so each vehicle only seee what local vehicles are attacking
 	for (int c=0;c<numTargets;c++){
 		totals[c] = 0;
 	}
 
+	// Generate targets
 	for (int i=0;i<numTargets;i++){
 		target temp;
 		temp.random_start(i);
 		targets.push_back(temp);
 	}
-
-//cout << targets[0].x << " " << targets[1].x << " " << targets[2].x << " " << targets[3].x << " " << targets[4].x << " " << targets.size() << endl;
+	// Generate vehicles
 	for (int j = 0;j<numVehicles;j++){
 		vehicle temp;
 		temp.random_start(j);
 		vehicles.push_back(temp);
 	}
 	for (int v=0;v<numVehicles;v++){
-		vehicles[v].visible_targets = visible_targets(vehicles[v].x, vehicles[v].y, targets);
+		//visible_targets is a vector of the id's of targets visible to that vehicle
+		vehicles[v].visible_targets = visible_targets(vehicles[v].x, vehicles[v].y, vehicles[v].targeted, targets);
+		//local_vehicles is a vector of the id's of vehicles local to a given vehicle
 		vehicles[v].local_vehicles = local_vehicles(vehicles[v].x, vehicles[v].y, vehicles, v);
-		//if (vehicles[v].visible_targets.size()>0 && vehicles[v].visible_targets.size()<numVehicles+1)
-			cout << v << ":  ";
-			for (int fuck=0;fuck<vehicles[v].visible_targets.size();fuck++){
-				cout << vehicles[v].visible_targets[fuck] << " ";
-			}
-			cout << endl;
-			vehicles[v].visible_targets = vehicles[v].aim(vehicles[v].visible_targets);
-			cout << v << ":  ";
-			for (int fuck2=0;fuck2<vehicles[v].visible_targets.size();fuck2++){
-				cout << vehicles[v].visible_targets[fuck2] << " ";
-			}
-			cout << endl;
-			totals[vehicles[v].targeted] +=1;
+		
+		// Display the visible target vector for each vehicle
+		cout << v << endl;
+		cout << "Targeted:" << vehicles[v].targeted << " Visible: ";
+		displayVector(vehicles[v].visible_targets);
+
+		vehicles[v].visible_targets = vehicles[v].aim(vehicles[v].visible_targets);
+
+		cout << "Targeted: " << vehicles[v].targeted << " Visible: ";
+		displayVector(vehicles[v].visible_targets);
+
+		//visible_targets is a vector of the id's of targets visible to that vehicle
+		vehicles[v].visible_targets = visible_targets(vehicles[v].x, vehicles[v].y, vehicles[v].targeted, targets);
+		cout << "Targeted: " << vehicles[v].targeted << " Visible: ";
+		displayVector(vehicles[v].visible_targets);
+// Re-aim
+		vehicles[v].visible_targets = vehicles[v].aim(vehicles[v].visible_targets);
+		vehicles[v].visible_targets = visible_targets(vehicles[v].x, vehicles[v].y, vehicles[v].targeted, targets);
+		cout << "Targeted: " << vehicles[v].targeted << " Visible: ";
+		displayVector(vehicles[v].visible_targets);
+		cout << endl;
+		totals[vehicles[v].targeted] +=1;
 	}
+
+
+
+
+
+/*
 	for (int cc=0;cc<numTargets;cc++){
 		cout << totals[cc]-targets[cc].size << "  ";
 	}
-cout << endl;
-	srand((unsigned)time(NULL));
-for(int 
+	cout << endl;
+*/
 
 
-
-redo=0;redo<1;redo++){
-	for (int r=0;r<numVehicles;r++){
-		if (totals[vehicles[r].targeted]-targets[vehicles[r].targeted].size > 0){
-cout << (int)50*(totals[vehicles[r].targeted]-targets[vehicles[r].targeted].size )/targets[vehicles[r].targeted].size << endl;
-				vehicles[r].visible_targets = vehicles[r].aim(vehicles[r].visible_targets);
-			
-		}
-		cout << r << ":  ";
-		for (int fuck2=0;fuck2<vehicles[r].visible_targets.size();fuck2++){
-			cout << vehicles[r].visible_targets[fuck2] << " ";
-		}
-		cout << endl;
-	}
-}
-
+/*
 	for (int c2=0;c2<numTargets;c2++){
 		cout << totals[c2]-targets[c2].size << "  ";
 	}
-
+	cout << endl;
+*/
 	return 0;
 }	

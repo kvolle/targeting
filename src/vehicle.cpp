@@ -16,6 +16,7 @@ x = rand() % 101;
 srand(x);
 y = rand() % 101;
 altitude = 0;
+targeted = -2;
 }
 
 std::vector<int> vehicle::aim(std::vector<int> targets){
@@ -24,7 +25,6 @@ std::vector<int> vehicle::aim(std::vector<int> targets){
 		targets.erase(targets.begin());
 	}
 	else{
-		targeted = -2;
 	}
 	
 	return targets;

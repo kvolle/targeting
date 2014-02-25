@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+   <pomdpx version="1.0" id="relaxedVersion"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="pomdpx.xsd">
+         <Description>Relaxed version of distributed asset allocation problem
+         </Description>
+         <Discount>0.95</Discount>
+         <Variable>
+              <StateVar vnamePrev="scaredness_0" vnameCurr="scaredness_1"
+                fullyObs="true">
+                  <ValueEnum> Scared notScared</ValueEnum>
+              </StateVar>
+              <StateVar vnamePrev="location_0" vnameCurr="location_1"
+                fullyObs="true">
+                  <ValueEnum>Upstairs Downstairs</ValueEnum>
+              </StateVar>
+              <ActionVar vname="action_robot">
+                  <ValueEnum> stay stair</ValueEnum>
+              </ActionVar>
+              <RewardVar vname ="reward robot" />
+      </Variable>
+
+      <InitialStateBelief>
+           <CondProb>
+               <Var>scaredness_0</Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+           <CondProb>
+               <Var>location_0 </Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+      </InitialStateBelief>
+
+      <StateTransitionFunction>
+           <CondProb>
+              <Var>scaredness_1</Var>
+              <Parent>action_robot scaredness_0 location_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay Scared upstairs Scared</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay Scared downstairs Scared</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay notScared upstairs Scared</Instance>
+                      <ProbTable>0.25</ProbTable>
+                  </Entry>
+				  <Entry>
+					  <Instance>stay notScared upstairs notScared</Instance>
+					  <ProbTable>0.75</ProbTable>
+				  </Entry>
+                  <Entry>
+                      <Instance>stay notScared downstairs Scared</Instance>
+                      <ProbTable>0.25</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay notScared downstairs notScared</Instance>
+                      <ProbTable>0.75</ProbTable>
+                  </Entry>
+				  <Entry>
+					  <Instance>stair * * notScared</Instance>
+					  <ProbTable>1.0</ProbTable>
+			      </Entry>
+
+              </Parameter>
+          </CondProb>
+          <CondProb>
+              <Var>location_1</Var>
+              <Parent>action_robot scaredness_0 location_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+				      <Instance>stay * upstairs upstairs</Instance>
+					  <ProbTable>1.0</ProbTable>
+				  </Entry>
+				  <Entry>
+					  <Instance>stay * downstairs downstairs</Instance>
+					  <ProbTable>1.0</ProbTable>
+				  </Entry>
+                  <Entry>
+					  <Instance>stair * downstairs upstairs</Instance>
+					  <ProbTable>1.0</ProbTable>
+				  </Entry>
+				  <Entry>
+					  <Instance>stair * upstairs downstairs</Instance>
+					  <ProbTable>1.0</ProbTable>
+				  </Entry>
+              </Parameter>
+          </CondProb>
+      </StateTransitionFunction>
+      <RewardFunction>
+        <Func>
+            <Var> reward robot </Var>
+            <Parent>action_robot scaredness_0 location_0 scaredness_1</Parent>
+            <Parameter type="TBL">
+                  <Entry>
+                      <Instance> stay Scared downstairs Scared</Instance>
+                      <ValueTable>-3</ValueTable>
+                  </Entry>
+				  <Entry>
+					  <Instance> stay Scared upstairs Scared</Instance>
+	                  <ValueTable>-2</ValueTable>
+                  </Entry>
+				  <Entry>
+                      <Instance> stay notScared downstairs Scared</Instance>
+                      <ValueTable>-2</ValueTable>
+                  </Entry>
+                  <Entry>
+                      <Instance> stay notScared downstairs notScared</Instance>
+                      <ValueTable>2</ValueTable>
+                  </Entry>
+                  <Entry>
+                      <Instance> stay notScared upstairs Scared</Instance>
+                      <ValueTable>-2</ValueTable>
+                  </Entry>
+				  <Entry>
+                      <Instance> stay notScared upstairs notScared</Instance>
+                      <ValueTable>2</ValueTable>
+                  </Entry>
+				  <Entry>
+					  <Instance> stair Scared upstairs notScared</Instance>
+					  <ValueTable>-1</ValueTable>
+                  </Entry>
+                  <Entry>
+					  <Instance> stair Scared downstairs notScared</Instance>
+                      <ValueTable>-1</ValueTable>
+                  </Entry>
+                  <Entry>
+                      <Instance> stair notScared upstairs notScared</Instance>
+                      <ValueTable>0</ValueTable>
+				  </Entry>
+                  <Entry>
+                      <Instance> stair notScared downstairs notScared</Instance>
+                      <ValueTable>0</ValueTable>
+                  </Entry>
+                  
+            </Parameter>
+        </Func>
+      </RewardFunction>
+</pomdpx>

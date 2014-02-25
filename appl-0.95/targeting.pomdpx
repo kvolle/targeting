@@ -1,0 +1,2162 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+   <pomdpx version="1.0" id="relaxedVersion"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="pomdpx.xsd">
+         <Description>Relaxed version of distributed asset allocation problem
+         </Description>
+         <Discount>0.95</Discount>
+         <Variable>
+              <StateVar vnamePrev="robot_0" vnameCurr="robot_1"
+                fullyObs="true">
+                  <NumValues> 4</NumValues>
+              </StateVar>
+              <StateVar vnamePrev="target0_0" vnameCurr="target0_1"
+                fullyObs="true">
+                  <NumValues>6</NumValues>
+              </StateVar>
+              <StateVar vnamePrev="target1_0" vnameCurr="target1_1"
+                fullyObs="true">
+                  <NumValues>6</NumValues>
+              </StateVar>
+              <StateVar vnamePrev="target2_0" vnameCurr="target2_1"
+                fullyObs="true">
+                  <NumValues>6</NumValues>
+              </StateVar>
+              <StateVar vnamePrev="target3_0" vnameCurr="target3_1"
+                fullyObs="true">
+                  <NumValues>6</NumValues>
+              </StateVar>
+              <ActionVar vname="action_robot">
+                  <ValueEnum> stay switchTo_0 switchTo_1 switchTo_2 switchTo_3</ValueEnum>
+              </ActionVar>
+              <RewardVar vname ="reward robot" />
+      </Variable>
+      <InitialStateBelief>
+           <CondProb>
+               <Var>robot_0</Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+           <CondProb>
+               <Var>target0_0 </Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+           <CondProb>
+               <Var>target1_0 </Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+           <CondProb>
+               <Var>target2_0 </Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+           <CondProb>
+               <Var>target3_0 </Var>
+               <Parent>null</Parent>
+               <Parameter type = "TBL">
+                   <Entry>
+                       <Instance>-</Instance>
+                       <ProbTable>uniform</ProbTable>
+                   </Entry>
+               </Parameter>
+           </CondProb>
+      </InitialStateBelief>
+      <StateTransitionFunction>
+          <CondProb>
+              <Var>robot_1</Var>
+              <Parent>action_robot robot_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>switchTo_0 * s0 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s0 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * s1 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 * s2 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s2 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 * s3 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s3 </Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+           </Parameter>
+       </CondProb>
+          <CondProb>
+              <Var>target0_1</Var>
+              <Parent>action_robot robot_0 target0_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+              </Parameter>
+          </CondProb>
+          <CondProb>
+              <Var>target1_1</Var>
+              <Parent>action_robot robot_0 target1_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+              </Parameter>
+          </CondProb>
+          <CondProb>
+              <Var>target2_1</Var>
+              <Parent>action_robot robot_0 target2_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+              </Parameter>
+          </CondProb>
+          <CondProb>
+              <Var>target3_1</Var>
+              <Parent>action_robot robot_0 target3_0</Parent>
+              <Parameter type="TBL">
+                  <Entry>
+                      <Instance>stay s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s0 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s0 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s0 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s1 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s1 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s1 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s0 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s1 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s2 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s3 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s4 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s2 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s2 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s2 s5 s5</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s0 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s0 s0</Instance>
+                      <ProbTable>0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s0 s0</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s1 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s1 s0</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s1 s1</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s2 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s2 s1</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s2 s2</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s3 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s3 s2</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s3 s3</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s4 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s4 s3</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s4 s4</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>stay s3 s5 s5</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 s3 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 s3 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 s3 s5 s4</Instance>
+                      <ProbTable>1.0</ProbTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 s3 s5 s5</Instance>
+                      <ProbTable>0.0</ProbTable>
+                  </Entry>
+              </Parameter>
+          </CondProb>
+      </StateTransitionFunction>
+      <RewardFunction>
+        <Func>
+            <Var> reward robot </Var>
+            <Parent>action_robot robot_0 target0_0 target1_0 target2_0 target3_0 </Parent>
+            <Parameter type="TBL">
+                  <Entry>
+                      <Instance> stay * * * * * </Instance>
+                      <ValueTable>0</ValueTable>
+                  </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 * s0 * * *</Instance>
+                      <ValueTable>0</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 * s1 * * *</Instance>
+                      <ValueTable>-1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 * s2 * * *</Instance>
+                      <ValueTable>-2</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 * s3 * * *</Instance>
+                      <ValueTable>-3</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_0 * s4 * * *</Instance>
+                      <ValueTable>-4</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * * s0 * *</Instance>
+                      <ValueTable>1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * * s1 * *</Instance>
+                      <ValueTable>0</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * * s2 * *</Instance>
+                      <ValueTable>-1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * * s3 * *</Instance>
+                      <ValueTable>-2</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_1 * * s4 * *</Instance>
+                      <ValueTable>-3</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 * * * s0 *</Instance>
+                      <ValueTable>2</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 * * * s1 *</Instance>
+                      <ValueTable>1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 * * * s2 *</Instance>
+                      <ValueTable>0</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 * * * s3 *</Instance>
+                      <ValueTable>-1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_2 * * * s4 *</Instance>
+                      <ValueTable>-2</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 * * * * s0</Instance>
+                      <ValueTable>1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 * * * * s1</Instance>
+                      <ValueTable>0</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 * * * * s2</Instance>
+                      <ValueTable>-1</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 * * * * s3</Instance>
+                      <ValueTable>-2</ValueTable>
+                    </Entry>
+                  <Entry>
+                      <Instance>switchTo_3 * * * * s4</Instance>
+                      <ValueTable>-3</ValueTable>
+                    </Entry>
+            </Parameter>
+        </Func>
+      </RewardFunction>
+</pomdpx>

@@ -11,6 +11,8 @@
 /home/kyle/Desktop/targeting/src/../include/vehicle.h
 vector
 -
+target.h
+/home/kyle/Desktop/targeting/src/../include/target.h
 
 /home/kyle/Desktop/targeting/src/main.cpp
 ../include/target.h
@@ -23,34 +25,8 @@ string
 -
 cmath
 -
-
-/home/kyle/Desktop/targeting/src/target.cpp
-../include/target.h
-/home/kyle/Desktop/targeting/src/../include/target.h
-cstdlib
--
 ctime
 -
-iostream
--
-
-/home/kyle/Desktop/targeting/src/vehicle.cpp
-../include/vehicle.h
-/home/kyle/Desktop/targeting/src/../include/vehicle.h
-../include/target.h
-/home/kyle/Desktop/targeting/src/../include/target.h
-vector
--
-string
--
-sstream
--
 cstdlib
--
-ctime
--
-map
--
-iostream
 -
 
